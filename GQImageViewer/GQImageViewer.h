@@ -21,8 +21,8 @@
 //选中的图片索引
 @property(nonatomic,assign)NSInteger index;
 
-/*显示ImageViewer到指定控制器上*/
-- (void)showView:(UIViewController *)viewController;
+/*显示ImageViewer到view上(添加到控制器上会有bug 还可以相应侧滑手势和导航返回 但是ImageViewer本身不会关闭 所以添加到view 也可以添加到window上 自由度高一点)*/
+- (void)showView:(UIView *)view;
 
 + (GQImageViewer *)sharedInstance;
 
