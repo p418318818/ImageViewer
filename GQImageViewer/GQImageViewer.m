@@ -38,12 +38,37 @@ __strong static GQImageViewer *imageViewerManager;
 
 - (void)initViewWithFrame:(CGRect)rect{
     
-    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+    #pragma mark————————————————添加模糊效果看着会舒服点
+    
+    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.0];
+    
+    
+    UIView *BlurView;
+    double version = [[UIDevice currentDevice].systemVersion doubleValue];
+    if (version >= 8.0f) {
+        
+        
+        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+        BlurView = [[UIVisualEffectView alloc] initWithEffect:blur];
+        ((UIVisualEffectView *)BlurView).frame = [UIScreen mainScreen].bounds;
+        
+        
+        
+    }else if(version >= 7.0f){
+        
+        BlurView = [[UIToolbar alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        ((UIToolbar *)BlurView).barStyle = UIBarStyleBlack;
+        
+    }
+
+    [self addSubview:BlurView];
+     #pragma mark————————————————
     
     UIPageControl *page;
     UILabel *label ;
     if (self.pageControl) {
-        page = [[UIPageControl alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(rect)-10, 0, 10)];
+    #pragma mark————————————————这里pagecontrol稍微调高一点 看着没那么压抑
+        page = [[UIPageControl alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(rect)-30, 0, 10)];
         page.numberOfPages = self.imageArray.count;
         page.tag = 101;
         page.currentPage = self.index;
