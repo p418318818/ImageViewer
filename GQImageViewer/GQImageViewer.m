@@ -104,7 +104,7 @@ __strong static GQImageViewer *imageViewerManager;
     [_tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
-- (void)showView:(UIViewController *)viewController{
+- (void)showView:(UIView *)view{
     if (_isVisible) {
         return;
     }else{
@@ -112,7 +112,7 @@ __strong static GQImageViewer *imageViewerManager;
     }
     CGRect rect;
     
-    UIView *showView = viewController.navigationController.view?viewController.navigationController.view:viewController.view;
+    UIView *showView = view;
     
     rect = CGRectMake(0, 0, CGRectGetMaxX(showView.frame), CGRectGetMaxY(showView.frame));
     
